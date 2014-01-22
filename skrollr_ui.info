@@ -1,0 +1,4 @@
+name = "Mediaquery Helpers"
+description = "Provides development tools to help in building mediaqueries."
+package = Development
+core = 7.x

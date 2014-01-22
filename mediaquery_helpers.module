@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_init().
+ */
+function mediaquery_helpers_init() {
+  // Get the global theme variable so that we don't load the js files on the admin theme...no need.
+  global $theme;
+  
+  $current_theme = variable_get('theme_default', '');
+  if ($theme === $current_theme) {
+    drupal_add_js(drupal_get_path('module', 'mediaquery_helpers') . '/js/mediaquery_helpers.js');
+    drupal_add_css(drupal_get_path('module', 'mediaquery_helpers') . '/css/mediaquery_helpers.css');
+  }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function mediaquery_helpers_page_build(&$page) {
+  $page['page_bottom']['mediaquery_helpers_scroll']['#markup'] = '<div id="mediaquery-helpers-scroll-indicator" class="mediaquery-helpers-indicator"></div>';
+  $page['page_bottom']['mediaquery_helpers_dimensions']['#markup'] = '<div id="mediaquery-helpers-dimensions-indicator" class="mediaquery-helpers-indicator"></div>';
+}
